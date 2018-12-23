@@ -5,6 +5,8 @@ services:
         ports:
             - 80:80
             - 443:443
+        links:
+            - php
         volumes:
             - ./apps:/var/www/
 
@@ -12,3 +14,9 @@ services:
 
             - ./docker/nginx/sites-available:/etc/nginx/sites-available
             - ./docker/nginx/sites-available:/etc/nginx/sites-enabled
+
+    php:
+        image: php:7.3-fpm-alpine3.8
+        volumes:
+            - ./apps:/var/www/
+
