@@ -1,5 +1,21 @@
 version: '3'
 services:
+    database:
+        image: postgres:11.1-alpine
+        restart: always
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: changeme
+            POSTGRES_DB: db
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080
+        depends_on:
+            - database
     nginx:
         image: nginx:1.15-alpine
         ports:
@@ -14,9 +30,9 @@ services:
 
             - ./docker/nginx/sites-available:/etc/nginx/sites-available
             - ./docker/nginx/sites-available:/etc/nginx/sites-enabled
-
     php:
-        image: php:7.3-fpm-alpine3.8
+        build: ./docker/php/
         volumes:
             - ./apps:/var/www/
+
 
