@@ -1,6 +1,6 @@
 <?php
 // Connecting, selecting database
-$dbconn = pg_connect("host=localhost dbname=db user=www password=foo")
+$dbconn = pg_connect("host=database port=5432 dbname=db user=root password=changeme")
     or die('Could not connect: ' . pg_last_error());
 
 // Performing SQL query
@@ -9,11 +9,11 @@ $result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
 // Printing results in HTML
 while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-    echo "\th1\n";
+    echo "<h1>";
     foreach ($line as $col_value) {
         echo "$col_value";
     }
-    echo "\t</h1>\n";
+    echo "</h1>";
 }
 
 // Free resultset

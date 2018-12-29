@@ -34,5 +34,7 @@ services:
         build: ./docker/php/
         volumes:
             - ./apps:/var/www/
+        links:
+            - database
 
 

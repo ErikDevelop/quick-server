@@ -1,9 +1,8 @@
 FROM php:7.3-fpm-alpine3.8
 
-RUN set -ex \
-    && apk add --no-cache \
-        php7-pgsql \
-        postgresql-dev
-
-RUN docker-php-ext-install pdo pdo_pgsql \
-    && docker-php-ext-enable pdo pdo_pgsql
+RUN apk add --update postgresql-dev \
+	&& docker-php-ext-install pgsql \
+	&& apk del \
+		postgresql-libs \
+		libsasl \
+		db \
