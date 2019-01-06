@@ -1,5 +1,12 @@
 version: '3'
 services:
+    composer:
+        image: composer:1.8.0
+        links:
+            - php
+        volumes:
+            - ./docker/composer/entrypoint.sh:/entrypoint.sh:cached
+        entrypoint: /entrypoint.sh
     database:
         image: postgres:11.1-alpine
         restart: always

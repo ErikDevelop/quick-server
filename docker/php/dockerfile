@@ -1,8 +1,18 @@
 FROM php:7.3-fpm-alpine3.8
 
-RUN apk add --update postgresql-dev \
-	&& docker-php-ext-install pgsql \
-	&& apk del \
+RUN apk add --update \
+		postgresql-dev \
+		zlib-dev \
+		libzip-dev
+RUN docker-php-ext-install \
+		pgsql \
+		zip
+RUN apk del \
 		postgresql-libs \
 		libsasl \
-		db \
+		db
+
+ENV COMPOSER_ALLOW_SUPERUSER 1
+ENV COMPOSER_HOME /composer
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
