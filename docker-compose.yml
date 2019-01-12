@@ -13,6 +13,8 @@ services:
             POSTGRES_USER: root
             POSTGRES_PASSWORD: changeme
             POSTGRES_DB: db
+        volumes:
+            - database-volume:/var/lib/postgresql/data
     adminer:
         image: adminer
         restart: always
@@ -40,5 +42,10 @@ services:
             - ./apps:/var/www/
         links:
             - database
+
+volumes:
+    database-volume:
+        external: true
+        
 
 
