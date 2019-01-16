@@ -1,11 +1,22 @@
 server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
+    listen 80;
+    listen [::]:80;
+
+    server_name dev.local www.dev.local;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 default_server ssl;
+    listen [::]:443 default_server;
 
     root /var/www/dev.local;
     index index.html index.htm index.nginx-debian.html;
 
     server_name dev.local www.dev.local;
+
+    ssl_certificate /etc/ssl/ssl-certificates/dev.local.pem;
+    ssl_certificate_key /etc/ssl/ssl-certificates/dev.local-key.pem;
 
     location / {
         try_files $uri $uri/ =404;
