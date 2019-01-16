@@ -1,13 +1,13 @@
 # quick-server
 This is a symfony server setup. A check-out and go solution for quickly developing new environments.
 
-#prerequisites
+# prerequisites
 development certificates are required. You should be able to test SSL functionality properly, after all. Security should not be an afterthought after deploying to production! This is a very painless process, however, when using mkcert (https://github.com/FiloSottile/mkcert). Simply install the tool. I will cover certificate creation in the 'creating a new project' section.
 
-#installation
+# installation
 //TODO
 
-#creating a new project
+# creating a new project
 1) Create a symfony/laravel project on your computer
 2) drag-and-drop the created folder into the apps folder.
 3) Either create a new file in sites-available or adjust an existing one to point to the public folder.
